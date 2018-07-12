@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<script type="text/javascript" src="data/subfields.js"></script>
+<script type="text/javascript" src="data/maindata.js"></script>
+<script type="text/javascript" src="w2p.js"></script>
+<title>Details</title>
+<style>
+    
+@font-face {
+font-family:"OpenSansLight";
+src: url('font/OpenSans-Light.ttf');
+}
+@font-face {
+font-family: 'OpenSansRegular';
+src: url('font/OpenSans-Regular.ttf');
+}
+
+
+@media(max-height: 480px){ /* iPhone 4 */
+
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+
+}
+
+window{
+margin: 0;
+}
+
+body{
+background-color: #D9DEC1;
+font-family: 'OpenSansRegular';
+overflow: hidden;
+padding: 0px;
+margin: 0;
+color: black;
+}
+
+#gtitle{
+position: absolute;
+top: 0%;
+left: 0%;
+height: 9%;
+font-size: 20pt;
+padding: 5px;
+padding-left: 9px;
+}
+
+#div_details{
+position: absolute;
+top: 9%;
+left: 2%;
+width: 96%;
+height: 81%;
+overflow-x: hidden;
+overflow-y: auto;
+background-color: rgba(55,139,136,1);
+/* background-image: url('media/nd/bg_2.png'); */
+background-size: 100% 100%;
+border-radius: 10px;
+}
+
+.Table_details{
+width: 100%;
+}
+
+.Table_details td{
+width: 50%;
+vertical-align: middle;
+}
+
+.Table_details .Table_details_title td{
+font-weight: bold;
+font-size: 15pt;
+}
+
+.Table_details_titleFont{
+color: black;
+}
+
+.Table_details_title_left{
+text-align: left;
+}
+
+.Table_details_title_right{
+text-align: center;
+}
+
+.Table_details_content_right{
+text-align: center;
+}
+
+.Table_details_content td{
+font-size: 14pt;
+}
+
+#div_addbookmarkbutton{
+display: table;
+position: absolute;
+top: 91.5%;
+left: 25%;
+width: 50%;
+height: 7%;
+font-size: 14pt;
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+color: white;
+}
+
+</style>
+</head>
+<body>
+    
+
+<div id="gtitle">Abbreviation</div>
+
+<div id="div_details">
+<br>
+<table class="Table_details" id="table_recTable">
+<tr class="Table_details_title"><td class="Table_details_titleFont Table_details_title_left">Recommended</td><td class="Table_details_titleFont Table_details_title_right">Subfield</td></tr>
+</table>
+<br>
+<table class="Table_details" id="table_altTable">
+<tr class="Table_details_title"><td class="Table_details_titleFont Table_details_title_left">Alternative</td><td class="Table_details_titleFont Table_details_title_right">Subfield</td></tr>
+</table>
+</div>
+
+<div id="div_addbookmarkbutton">
+<div style="display:table-row;">
+<div id="div_addbookmarkbutton_value" style="display:table-cell;text-align:center;vertical-align:middle;"></div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+var obj_gtitle=document.getElementById('gtitle');
+var obj_table_recTable=document.getElementById('table_recTable');
+var obj_table_altTable=document.getElementById('table_altTable');
+var obj_table_delTable=document.getElementById('table_delTable');
+var obj_div_addbookmarkbutton=document.getElementById('div_addbookmarkbutton');
+
+
+var inIndex={};
+var lang='';
+
+function setIndex(_index,_lang){
+inIndex=_index;
+lang=_lang;
+
+var data=maindata[lang+'list'][inIndex.key]['data'][inIndex.data];
+obj_gtitle.innerHTML=data.name;
+
+var dataRAD={"R":[],"A":[]};
+
+for(var i=0; i<data.refers.length; i++){
+for(var k=0; k<maindata.content.length; k++){
+if(maindata.content[k].id==data.refers[i]){
+if(maindata.content[k].RAD=='R')dataRAD.R.push(maindata.content[k]);
+else if(maindata.content[k].RAD=='A')dataRAD.A.push(maindata.content[k]);
+//else if(maindata.content[k].RAD=='D')dataRAD.D.push(maindata.content[k]);
+}
+}
+}
+
+for(var n in dataRAD){
+var tab=null;
+if(n=='R')tab=obj_table_recTable;
+else if(n=='A')tab=obj_table_altTable;
+//else if(n=='D')tab=obj_table_delTable;
+for(var i=0; i<dataRAD[n].length; i++){
+var tr=document.createElement('tr');
+tr.setAttribute('class','Table_details_content');
+var td_1=document.createElement('td');
+if(lang=='eng')td_1.innerHTML=dataRAD[n][i].Chinese;
+else if(lang=='chi')td_1.innerHTML=dataRAD[n][i].English;
+var td_2=document.createElement('td');
+td_2.setAttribute('class','Table_details_content_right');
+var sf=dataRAD[n][i].Subfield_1;
+if(sf=='')sf='---';
+else{
+for(var sfi in subfields.Subfield1){
+if(subfields.Subfield1[sfi].key.toLowerCase()==sf.toLowerCase()){
+sf=PhoneAppBuilderHelper.upperFirstChar(subfields.Subfield1[sfi].name);
+}
+}
+}
+td_2.innerHTML=sf;
+tr.appendChild(td_1);
+tr.appendChild(td_2);
+tab.appendChild(tr);
+}
+if(dataRAD[n].length==0){
+tab.style.display='none';
+}
+}
+
+}
+
+
+var pabobj_div_addbookmarkbutton=toPABObject(obj_div_addbookmarkbutton);
+pabobj_div_addbookmarkbutton.doMouseEvent('mousedown',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected_b.png\')';
+});
+pabobj_div_addbookmarkbutton.doMouseEvent('mouseup',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected.png\')';
+//location.href='addbm://'+escape(JSON.stringify({"key":inIndex.key,"data":inIndex.data}));
+Phone.w2p("addbm",lang+":"+inIndex.key+","+inIndex.data);
+});
+
+
+function setBookmarked(_bool){
+if(_bool)document.getElementById('div_addbookmarkbutton_value').innerHTML='- Bookmarks';
+else document.getElementById('div_addbookmarkbutton_value').innerHTML='+ Bookmarks';
+}
+
+//sjavascript:setIndex(10,'eng');
+
+</script>
+</body>
+</html>

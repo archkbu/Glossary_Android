@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="../jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<script type="text/javascript" src="data/subfields.js"></script>
+<script type="text/javascript" src="data/maindata.js"></script>
+<title>Play TT</title>
+<style>
+    
+@font-face {
+font-family:"OpenSansLight";
+src: url('font/OpenSans-Light.ttf');
+}
+@font-face {
+font-family: 'OpenSansRegular';
+src: url('font/OpenSans-Regular.ttf');
+}
+.ImgClass{
+	width:45%;
+}
+
+@media(max-height: 480px){ /* iPhone 4 */
+
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+
+}
+
+
+body{
+background-color: #D9DEC1;
+font-family: 'OpenSansRegular';
+overflow: hidden;
+color: white;
+}
+
+#div_topBar{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 8%;
+font-size: 15pt;
+background-color: rgba(30,109,106,1);
+}
+
+#td_div_topBar{
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+}
+
+#div_addbookmarkbutton{
+display: table;
+position: absolute;
+top: 91.5%;
+left: 25%;
+width: 50%;
+height: 7%;
+font-size: 14pt;
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+color: white;
+}
+
+#div_ansTable{
+display: table;
+position: absolute;
+top: 15%;
+left: 1%;
+width: 98%;
+height: 70%;
+/* background-color: rgba(55,139,136,1); */
+/* background-image: url('media/nd/bg_2.png'); */
+background-size: 100% 100%;
+border-radius: 10px;
+}
+
+#div_ansTableTerms{
+display: table-cell;
+font-size: 25pt;
+text-align: center;
+vertical-align: middle;
+height: 45%;
+color: black;
+}
+
+#div_ansTableAns{
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+height: 29%;
+}
+
+#input_ansTableAn{
+font-size: 20pt;
+text-align: center;
+width: 80%;
+background-color: rgba(255,255,255,0.7);
+border: 1px solid rgba(255,255,255,0.2);
+color: rgb(30,30,30);
+}
+
+#div_ansTableSubmit{
+display: table-cell;
+font-size: 20pt;
+text-align: center;
+vertical-align: middle;
+height: 26%;
+}
+
+#div_submitbtn{
+width: 50%;
+padding-top: 8pt;
+padding-bottom: 8pt;
+margin: 0 auto;
+background-image: url('media/nd/optiontab.png');
+background-size: 100% 100%;
+color: white;
+}
+
+#div_resultDiv{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.9);
+}
+
+#div_resultTdDiv{
+display: table-cell;
+width: 100%;
+height: 100%;
+text-align: center;
+vertical-align: middle;
+font-size: 35pt;
+color: white;
+}
+
+#div_resultTdCAns{
+font-size: 17pt;
+color: white;
+}
+
+.Tfimg{
+width: 50%;
+}
+
+</style>
+</head>
+<body>
+    
+
+<div id="div_topBar"><div style="display:table-row;"><div id="td_div_topBar">Question  of 20</div></div></div>
+
+
+<div id="div_ansTable">
+<div style="display:table-row;"><div id="div_ansTableTerms"></div></div>
+<div style="display:table-row;"><div id="div_ansTableAns"><input id="input_ansTableAn" type="text" placeholder="Translation"></div></div>
+<div style="display:table-row;"><div id="div_ansTableSubmit"><div id="div_submitbtn">Submit</div></div></div>
+</div>
+
+
+<div id="div_addbookmarkbutton">
+<div style="display:table-row;">
+<div id="div_addbookmarkbutton_value" style="display:table-cell;text-align:center;vertical-align:middle;"></div>
+</div>
+</div>
+
+
+<div id="div_resultDiv" style="display:none;"><div style="display:table-row;"><div id="div_resultTdDiv"></div></div></div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+
+var qcount=6;
+var lang='';
+var subfield='';
+var bookmarks={};
+var old_bookmarks={};
+var inIndex=0;
+var inIndex2=0;
+var inKey=0;
+var preprocessedArr=[];
+var qnum=0;
+var marks=0;
+var anslist=[];
+var anssss=[];
+var timertime=2000;
+var drawnPool=[];
+
+var obj_div_addbookmarkbutton=document.getElementById('div_addbookmarkbutton');
+var obj_div_ansTableTerms=document.getElementById('div_ansTableTerms');
+var obj_div_submitbtn=document.getElementById('div_submitbtn');
+var obj_input_ansTableAn=document.getElementById('input_ansTableAn');
+
+
+function initGame(_lang,_subfield,_bookmarks){
+lang=_lang;
+//document.write(lang);
+subfield=_subfield;
+old_bookmarks=_bookmarks;
+if(bookmarks.eng==null)bookmarks.eng=[];
+if(bookmarks.chi==null)bookmarks.chi=[];
+for(var i=0; i<old_bookmarks[lang].length; i++){
+var bmv=old_bookmarks[lang][i];
+var bmKey=(bmv.split(','))[0];
+var bmData=(bmv.split(','))[1];
+bookmarks[lang].push({"key":bmKey,"data":bmData});
+}
+refreshMainData();
+draw();
+setBookmarked(false);
+for(var i=0; i<bookmarks[lang].length; i++){
+if(bookmarks[lang][i].key==preprocessedArr[inIndex].key && bookmarks[lang][i].data==preprocessedArr[inIndex].id)setBookmarked(true);
+}
+}
+
+
+
+function draw(){
+qnum++;
+//if(qnum>qcount){setTimeout(function(){location.href='toresult://'+escape(JSON.stringify(anslist));},timertime);return;}
+if(qnum>qcount){setTimeout(function(){Android.toresult(JSON.stringify(anslist));},timertime);return;}
+
+inIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+
+var checkindex=function(){
+for(var j=0; j<drawnPool.length; j++){if(drawnPool[j]==inIndex)return true;}return false;
+}
+while(checkindex()){
+inIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+}
+drawnPool.push(inIndex);
+
+inIndex2=preprocessedArr[inIndex].id;
+inKey=preprocessedArr[inIndex].key;
+obj_div_ansTableTerms.innerHTML=preprocessedArr[inIndex].name;
+document.getElementById('td_div_topBar').innerHTML='Question '+qnum+' of '+qcount;
+}
+
+
+
+function getRandomIntInclusive(min,max){
+return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+
+
+function getContentById(_id){
+for(var i=_id; i<maindata.content.length; i++){
+if(maindata.content[i].id==_id)return maindata.content[i];
+}
+return null;
+}
+
+
+
+function refreshMainData(){
+var langlist=lang+'list';
+if(subfield=='bookmarked'){
+for(var i=0; i<bookmarks[lang].length; i++){
+var bmKey=bookmarks[lang][i].key;
+var bmData=bookmarks[lang][i].data;
+preprocessedArr.push({"name":maindata[langlist][bmKey].data[bmData].name,"id":bmData,"refers":maindata[langlist][bmKey].data[bmData].refers,"level":1,"key":bmKey});
+}
+}else{
+for(var p=0; p<maindata[langlist].length; p++){
+for(var i=0; i<maindata[langlist][p].data.length; i++){
+if(subfield!='all'){
+var needAdd=false;
+for(var k in maindata[langlist][p].data[i].refers){
+var con=getContentById(maindata[langlist][p].data[i].refers[k]);
+if(con.Subfield_1.toLowerCase()==subfield)needAdd=true;
+}
+if(needAdd){preprocessedArr.push({"name":maindata[langlist][p].data[i].name,"id":i,"refers":maindata[langlist][p].data[i].refers,"level":1,"key":p});}
+}else{
+preprocessedArr.push({"name":maindata[langlist][p].data[i].name,"id":i,"refers":maindata[langlist][p].data[i].refers,"level":1,"key":p});
+}
+}
+}
+
+}
+}
+
+
+
+function checkAns(_ans,_quest){
+var isRight=false;
+canssss=[];
+for(var i=0; i<preprocessedArr[inIndex].refers.length; i++){
+var con=getContentById(preprocessedArr[inIndex].refers[i]);
+if(lang=='eng')canssss.push(con.Chinese);
+else if(lang=='chi')canssss.push(con.English);
+if(lang=='eng' && con.Chinese==_ans){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":1,"result":true});isRight=true;}
+else if(lang=='chi' && con.English==_ans){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_an,"qnum":qnum,"level":1,"result":true});isRight=true;}
+}
+if(isRight)return isRight;
+if(lang=='eng'){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":1,"result":false});}
+else if(lang=='chi'){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":1,"result":false});}
+return isRight;
+}
+
+
+
+var pabobj_div_addbookmarkbutton=toPABObject(obj_div_addbookmarkbutton);
+pabobj_div_addbookmarkbutton.doMouseEvent('mouseup',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected.png\')';
+var isAdd=true;
+for(var i=0; i<bookmarks[lang].length; i++){
+if(bookmarks[lang][i].data==preprocessedArr[inIndex].id){
+isAdd=false;bookmarks[lang].splice(i,1);
+}
+}
+if(isAdd)bookmarks[lang].push({"key":preprocessedArr[inIndex].key,"data":preprocessedArr[inIndex].id});
+//location.href='addbm://'+escape(JSON.stringify({"key":preprocessedArr[inIndex].key,"data":preprocessedArr[inIndex].id}));
+Android.addbm(lang+":"+preprocessedArr[inIndex].key+","+preprocessedArr[inIndex].id);
+});
+pabobj_div_addbookmarkbutton.doMouseEvent('mousedown',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected_b.png\')';
+});
+function setBookmarked(_bool){
+if(_bool)document.getElementById('div_addbookmarkbutton_value').innerHTML='- Bookmarks';
+else document.getElementById('div_addbookmarkbutton_value').innerHTML='+ Bookmarks';
+}
+
+
+
+var pab_obj_div_submitbtn=toPABObject(obj_div_submitbtn);
+pab_obj_div_submitbtn.doMouseEvent('mousedown',function(){
+obj_div_submitbtn.style.backgroundImage='url(\'media/nd/optiontab_b.png\')';
+});
+pab_obj_div_submitbtn.doMouseEvent('mouseup',function(){
+obj_div_submitbtn.style.backgroundImage='url(\'media/nd/optiontab.png\')';
+if(obj_input_ansTableAn.value==''){
+	//location.href='alemp://yes';return;
+	Android.alemp();return;
+}
+if(checkAns(obj_input_ansTableAn.value.toLowerCase(),preprocessedArr[inIndex].name)){
+marks++;
+document.getElementById('div_resultTdDiv').style.color='green';
+document.getElementById('div_resultTdDiv').innerHTML='<img class="Tfimg" src="media/tick.png">';
+}else{
+var splitl='、';
+if(lang=='chi')splitl=',';
+document.getElementById('div_resultDiv').style.display='';
+document.getElementById('div_resultTdDiv').style.color='red';
+document.getElementById('div_resultTdDiv').innerHTML='<img class="Tfimg" src="media/wrong.png">';
+var div_resultTdCAns=document.createElement('div');
+div_resultTdCAns.setAttribute('id','div_resultTdCAns');
+for(var i=0; i<canssss.length; i++){
+if(i==0)div_resultTdCAns.innerHTML='<br><br>Answer(s):<br>'+canssss[i];
+else div_resultTdCAns.innerHTML=div_resultTdCAns.innerHTML+splitl+'<br>'+canssss[i];
+}
+document.getElementById('div_resultTdDiv').appendChild(div_resultTdCAns);
+}
+document.getElementById('div_resultDiv').style.display='';
+setTimeout("document.getElementById('div_resultDiv').style.display='none';",timertime);
+draw();
+obj_input_ansTableAn.value='';
+obj_input_ansTableAn.blur();
+});
+
+
+// sjavascript:initGame('eng','mor',{"eng":[5,10],"chi":[15,19]});
+</script>
+
+
+
+
+<img class="ImgClass" src="media/tips/tt_type.png" id="tip_select" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/tt_bookmark.png" id="tip_bookmark" style="position:absolute;z-index:100;visibility:hidden">
+<div onclick="javascript:show_tips(false);" id="tip_black" style="height:100%;width:100%;background-color:black;position:absolute;z-index:1;top:0px;left:0px;opacity:0.6;z-index:99;visibility:hidden"></div>
+
+<script>
+
+	document.getElementById('tip_select').style.bottom='48%';
+	document.getElementById('tip_select').style.left="25%";
+
+	document.getElementById('tip_bookmark').style.bottom='8%';
+	document.getElementById('tip_bookmark').style.left='55%';
+	
+	function show_tips(visible){
+		var v='';
+		if (visible==true){v='visible';}
+		else {v='hidden';}
+		document.getElementById('tip_select').style.visibility=v;
+		document.getElementById('tip_bookmark').style.visibility=v;
+		document.getElementById('tip_black').style.visibility=v;
+	}
+	
+</script>
+
+
+</body>
+</html>

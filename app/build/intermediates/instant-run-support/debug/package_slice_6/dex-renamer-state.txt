@@ -1,0 +1,4 @@
+#Thu Jul 12 17:08:52 HKT 2018
+base.0=/Users/arc1/Documents/GitHub/LSHK-Android-open/app/build/intermediates/transforms/dexMerger/debug/6
+path.0=classes.dex
+renamed.0=classes.dex

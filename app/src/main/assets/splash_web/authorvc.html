@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ULI - Author</title>
+<style>
+body{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+overflow: hidden;
+}
+
+#mainlogo{
+position: absolute;
+top: 6%;
+left: 7%;
+width: 25%;
+}
+
+#verticallogo{
+position: absolute;
+top: 18.5%;
+right: 8.5%;
+height: 63%;
+}
+
+#contentDiv{
+position: absolute;
+top: 26%;
+left: 7%;
+}
+
+hr{
+width: 100%;
+height: 2px;
+background-color: rgb(220,220,220);
+border: none;
+}
+
+#subContentDiv{
+padding-top: 6px;
+padding-bottom: 7px;
+}
+
+#txt_ctitle{
+color: #FF4740;
+font-size: 21px;
+}
+
+#txt_ctext{
+color: #808080;
+font-size: 21px;
+}
+
+#txt_enter{
+color: red;
+font-weight: bold;
+font-size: 24px;
+}
+
+#txt_appname{
+font-size: 23px;
+}
+
+#txt_author{
+font-size: 17px;
+color: #808080;
+}
+</style>
+</head>
+<body>
+
+<img id="mainlogo" src="simple_logo.png">
+
+<img id="verticallogo" src="vertical.png">
+
+
+<div id="contentDiv">
+<hr id="firstHr">
+<div id="subContentDiv">
+<span id="txt_ctitle">Research Centre For</span>
+<br><br>
+<span id="txt_ctext">Ubiquitous Learning &amp;&nbsp;<br>Integrated Pedagogy</span>
+</div>
+<hr>
+<br>
+<span id="txt_appname">Medicinal Plant Images<br>Database<br>藥用植物圖像數據庫</span>
+<br>
+<span id="txt_author">By Dr. CHEN Hubiao<br>School of Chinese Medicine<br>Hong Kong Baptist University</span>
+<br>
+<br>
+<span id="txt_enter" ontouchend="enterPressed();">Enter&nbsp;&gt;</span>
+</div>
+
+
+<script type="text/javascript">
+function enterPressed(){
+location.href='tonext://yes';
+}
+</script>
+</body>
+</html>

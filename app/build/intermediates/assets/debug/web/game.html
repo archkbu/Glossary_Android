@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="../jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<script type="text/javascript" src="data/subfields.js"></script>
+<title>Game</title>
+<style>
+    
+@font-face {
+font-family:"OpenSansLight";
+src: url('font/OpenSans-Light.ttf');
+}
+@font-face {
+font-family: 'OpenSansRegular';
+src: url('font/OpenSans-Regular.ttf');
+}
+.ImgClass{
+	width:45%;
+}
+
+@media(max-height: 480px){ /* iPhone 4 */
+
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+
+}
+
+
+body{
+font-family: 'OpenSansRegular';
+overflow: hidden;
+background-color: #D9DEC1;
+color: white;
+}
+
+#div_bottomDiv{
+position: absolute;
+bottom: 0.5%;
+left: 1%;
+width: 98%;
+height: 7%;
+}
+
+#div_bottomTable{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+border-spacing: 2.5pt;
+padding: 0;
+}
+
+.div_tt_td{
+display: table-cell;
+width: 50%;
+height: 100%;
+text-align: center;
+vertical-align: middle;
+color: white;
+}
+
+#div_tt_td_1{
+background-image: url('media/nd/button_selected.png');
+background-size: 100% 100%;
+}
+
+#div_tt_td_2{
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+}
+
+#div_mainDiv{
+display: table;
+position: absolute;
+top: 0.5%;
+left: 1%;
+width: 98%;
+height: 91.2%;
+}
+
+.MainDiv_Td{
+display: table-cell;
+}
+
+#div_lsubfieldDiv{
+display: table;
+width: 100%;
+height: 90pt;
+max-height: 90pt;
+background-image: url('media/nd/ls_subfield_tab.png');
+background-size: 100% 100%;
+color: black;
+}
+
+#div_lsubfieldDiv_Td_1{
+display: table-cell;
+height: 100%;
+width: 30%;
+text-align: left;
+vertical-align: middle;
+overflow: hidden;
+}
+
+#div_lsubfieldDiv_Td_2{
+display: table-cell;
+height: 100%;
+/* background-color: rgba(200,200,200,0.3); */
+width: 70%;
+text-align: left;
+vertical-align: middle;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+#div_lsubfieldDiv_Td_2_content{
+height: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+font-size: 15pt;
+}
+
+#div_mainDiv_Td_1{
+height: 90pt;
+}
+
+#div_mainDiv_Td_2{
+height:40pt;
+text-align: center;
+vertical-align: middle;
+font-size: 15pt;
+}
+
+
+.SelectedSubfield{
+background-color: rgba(200,200,200,0.6);
+width: 100%;
+}
+
+#div_mainDiv_Td_3_content{
+height: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+text-align: center;
+}
+
+.btn_main{
+width: 66%;
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+font-size: 20pt;
+padding-top: 9pt;
+padding-bottom: 9pt;
+margin: 0 auto;
+color: white;
+}
+
+#btn_mu{
+position:absolute;
+top:40%;
+left:17%;
+}
+
+#btn_tt{
+position:absolute;
+top:55%;
+left:17%;
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div id="div_bottomDiv">
+<div id="div_bottomTable">
+<div style="display:table-row;">
+<div class="div_tt_td" id="div_tt_td_1">English</div>
+<div class="div_tt_td" id="div_tt_td_2">Chinese</div>
+</div>
+</div>
+</div>
+
+
+<div id="div_mainDiv">
+<div style="display:table-row;"><div class="MainDiv_Td" id="div_mainDiv_Td_2">
+
+<div id="div_lsubfieldDiv">
+<div style="display:table-row;">
+<div id="div_lsubfieldDiv_Td_1" style="padding-left:3px;">
+Linguistic<br>subfield
+</div>
+<div id="div_lsubfieldDiv_Td_2">
+<div id="div_lsubfieldDiv_Td_2_content"></div>
+</div>
+</div>
+</div>
+
+</div></div>
+
+<div style="display:table-row;"><div class="MainDiv_Td" id="div_mainDiv_Td_3">
+<div id="div_mainDiv_Td_3_content">
+
+<div class="btn_main" id="btn_mu" ontouchstart="setDark(true,this);" ontouchend="setDark(false,this);btnClicked_mu();">Multiple Choice</div>
+
+<div class="btn_main" id="btn_tt" ontouchstart="setDark(true,this);" ontouchend="setDark(false,this);btnClicked_tt();">Type translations</div>
+</div>
+</div></div>
+</div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+
+function setDark(_bool,_obj){
+if(_bool)_obj.style.backgroundImage="url('media/nd/button_deselected_b.png')";
+else _obj.style.backgroundImage="url('media/nd/button_deselected.png')";
+}
+
+
+function btnClicked_mu(){
+//location.href='tomu://';
+Android.toMU();
+}
+
+function btnClicked_tt(){
+//location.href='tott://';
+Android.toTT();
+}
+
+
+var obj_div_lsubfieldDiv_Td_2_content=document.getElementById('div_lsubfieldDiv_Td_2_content');
+var inSubfield='all';
+var inLang='eng';
+var subfieldTouched=false;
+var subfieldMoved=false;
+
+
+var div_tt_td_1_PABO=toPABObject(document.getElementById('div_tt_td_1'));
+var div_tt_td_2_PABO=toPABObject(document.getElementById('div_tt_td_2'));
+
+div_tt_td_1_PABO.doMouseEvent('click',function(){
+div_tt_td_1_PABO.htmlObject.style.backgroundImage="url('media/nd/button_selected.png')";
+div_tt_td_2_PABO.htmlObject.style.backgroundImage="url('media/nd/button_deselected.png')";
+inLang='eng';
+//location.href='seteng://';
+Android.seteng();
+});
+div_tt_td_2_PABO.doMouseEvent('click',function(){
+div_tt_td_1_PABO.htmlObject.style.backgroundImage="url('media/nd/button_deselected.png')";
+div_tt_td_2_PABO.htmlObject.style.backgroundImage="url('media/nd/button_selected.png')";
+inLang='chi';
+//location.href='setchi://';
+Android.setchi();
+});
+
+function refreshSubfields(){
+var content='';
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content='<div class="SelectedSubfield" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\'All\');">All</div>';
+else content='<div class="SelectedSubfield" onclick="subfieldSelected(this,\'All\');">All</div>';
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content=content+'<div class="" id="div_bmobj" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\'Bookmarked\');">Bookmarked</div>';
+else content=content+'<div class="" id="div_bmobj" onclick="subfieldSelected(this,\'Bookmarked\');">Bookmarked</div>';
+for(var i in subfields['Subfield1']){
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content=content+'<div class="" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\''+subfields['Subfield1'][i]['key']+'\');">'+subfields['Subfield1'][i]['name']+' ['+subfields['Subfield1'][i]['key']+']</div>';
+else content=content+'<div class="" onclick="subfieldSelected(this,\''+subfields['Subfield1'][i]['key']+'\');">'+subfields['Subfield1'][i]['name']+' ['+subfields['Subfield1'][i]['key']+']</div>';
+}
+obj_div_lsubfieldDiv_Td_2_content.innerHTML=content;
+}
+refreshSubfields();
+
+function subfieldonts(){
+subfieldTouched=true;
+subfieldMoved=false;
+}
+
+document.ontouchmove=function(_e){
+if(subfieldTouched)subfieldMoved=true;
+}
+
+function subfieldSelected(_obj,_in){
+_in=_in.toLowerCase();
+subfieldTouched==false;
+if(subfieldMoved==false){
+var divs=obj_div_lsubfieldDiv_Td_2_content.getElementsByTagName('div');
+for(var d in divs){
+try{if(divs[d].getAttribute('class')=='SelectedSubfield')divs[d].setAttribute('class','');}catch(e){}
+}
+_obj.setAttribute('class','SelectedSubfield');
+inSubfield=_in;
+//location.href='setsubfield://'+inSubfield;
+Android.setsubfield(inSubfield);
+}
+}
+
+</script>
+
+
+<img class="ImgClass" src="media/tips/game_subfield.png" id="tip_subfield" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/game_select.png" id="tip_select" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/game_eng_chi.png" id="tip_eng_chi" style="position:absolute;z-index:100;visibility:hidden">
+<div onclick="javascript:show_tips(false);" id="tip_black" style="height:100%;width:100%;background-color:black;position:absolute;z-index:99;top:0px;left:0px;opacity:0.6;z-index:99;visibility:hidden"></div>
+<script>
+	document.getElementById('tip_subfield').style.top="4%";
+	document.getElementById('tip_subfield').style.left="63%";
+
+	//document.getElementById('tip_select').style.top  = ($("#btn_mu").position().top)-($("#tip_select").height())-10+'px';
+	document.getElementById('tip_select').style.bottom  = '64%';
+	document.getElementById('tip_select').style.left = '25%';//($(window).width()/2.0)-($("#tip_select").width()/2.0) +'px';
+
+	//bottom (chi/eng) buttons height is 7%
+	document.getElementById('tip_eng_chi').style.bottom='8%';
+	document.getElementById('tip_eng_chi').style.left='45%';
+	
+	function show_tips(visible){
+		var v ='';
+		if (visible==true){v='visible';}
+		else {v='hidden';}
+		document.getElementById('tip_subfield').style.visibility=v;
+		document.getElementById('tip_select').style.visibility=v;
+		document.getElementById('tip_eng_chi').style.visibility=v;
+		document.getElementById('tip_black').style.visibility=v;
+	}
+	//show_tips(true);
+</script>
+
+
+
+</body>
+</html>

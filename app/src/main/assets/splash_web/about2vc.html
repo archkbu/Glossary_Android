@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ARC - Author</title>
+<style>
+body{
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+overflow: hidden;
+}
+
+hr{
+width: 100%;
+height: 2px;
+background-color: rgb(220,220,220);
+border: none;
+}
+
+#mainDiv{
+position: absolute;
+top: 3%;
+left: 3%;
+width: 96%;
+height: 95%;
+overflow: hidden;
+}
+
+#fulllogo{
+width: 45%;
+}
+
+#contentDiv{
+color: rgb(100,100,100);
+font-size: 19px;
+width: 100%;
+height: 80%;
+overflow-x: hidden;
+overflow-y: auto;
+background-color: rgb(254,254,254);
+-webkit-overflow-scrolling: touch;
+}
+
+#contentTable{
+width: 100%;
+border: 0;
+}
+
+.contentTableTd_icon{
+width: 5%;
+text-align: left;
+vertical-align: top;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+.contentTableTd_cont{
+width: 95%;
+text-align: left;
+vertical-align: middle;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+.wtaimg{
+width: 25px;
+}
+
+#btn_close{
+position: absolute;
+right: 5%;
+top: 5%;
+color: rgb(130,130,130);
+width: 20%;
+text-align: center;
+border-radius: 10px;
+padding-top: 8px;
+padding-bottom: 8px;
+background-color: rgb(230,230,230);
+}
+</style>
+</head>
+<body>
+
+
+<div id="mainDiv">
+<img id="fulllogo" src="full_logo.png"><br><br><br>
+<div id="contentDiv">
+<span style="font-size:25px;font-weight:bold;">About</span>
+<br><br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</div>
+
+
+<div id="btn_close" ontouchend="closeView();">Close</div>
+
+
+<script type="text/javascript">
+
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+function closeView(){
+Android.closePage();
+}
+</script>
+</body>
+</html>
