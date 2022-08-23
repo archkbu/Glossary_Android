@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<style>
+    
+@font-face {
+    font-family:"OpenSansLight";
+    src: url("font/OpenSans-Light.ttf") /* TTF file for CSS3 browsers */
+}
+@font-face {
+    font-family:"OpenSansRegular";
+    src: url("font/OpenSans-Regular.ttf") /* TTF file for CSS3 browsers */
+}
+
+@media(max-height: 480px){ /* iPhone 4 */
+	.td_maintitleFont{
+        font-size: 17pt;
+    }
+    
+    .btn_bottom{
+        display: table;
+        position: absolute;
+        bottom: 0%;
+        width: 43%;
+        background-image: url('media/nd/home_arrow_3.png');
+    }
+    
+    .td_mainbtn{
+        font-family: 'OpenSansLight';
+        color: white;
+        font-size: 12pt;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 3%;
+        padding-bottom: 1px;
+        background-color: rgba(255,255,255,1);
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+    }
+    
+    #buttonsTable{
+        position: absolute;
+        top: 43%;
+        left: 0%;
+        width: 100%;
+        border-spacing: 0px 10pt;
+    }
+    
+    .NormalBtn td{
+        text-align: center;
+        vertical-align: middle;
+        font-size: 21pt;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        color: rgba(0,0,0,0.87);
+    }
+    
+    #img_top{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 33%;
+        background-color: rgb(107,71,74);
+        background-image: url('media/nd/main_imgbg.png');
+        background-size: 100% 100%;
+    }
+    
+    #table_main{
+    top: 34%;
+    }
+    
+    #img_img{
+        position: absolute;
+        top: 0%;
+        left: 10%;
+        width: 80%;
+        height: 100%;
+    }
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+    .td_maintitleFont{
+        font-size: 17pt;
+    }
+    
+    .btn_bottom{
+        display: table;
+        position: absolute;
+        bottom: 0%;
+        width: 43%;
+        background-image: url('media/nd/home_arrow_3.png');
+    }
+    
+    .td_mainbtn{
+        font-family: 'OpenSansLight';
+        color: white;
+        font-size: 14pt;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 6%;
+        padding-bottom: 1px;
+        background-color: rgba(255,255,255,1);
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+    }
+    
+    #buttonsTable{
+        position: absolute;
+        top: 45%;
+        left: 0%;
+        width: 100%;
+        border-spacing: 0px 15pt;
+    }
+    
+    .NormalBtn td{
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25pt;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        color: rgba(0,0,0,0.87);
+    }
+    
+    #img_top{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 33%;
+        background-color: rgb(95,63,66);
+    }
+    
+    #table_main{
+    top: 34%;
+    }
+    
+    #img_img{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+    .td_maintitleFont{
+        font-size: 18pt;
+    }
+    
+    .btn_bottom{
+        display: table;
+        position: absolute;
+        bottom: 0%;
+        width: 44%;
+        height: 9%;
+        background-image: url('media/nd/home_arrow_3.png');
+    }
+    
+    .td_mainbtn{
+        font-family: 'OpenSansLight';
+        color: white;
+        font-size: 17pt;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 7%;
+        padding-bottom: 1px;
+        background-color: rgba(255,255,255,1);
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+    }
+    
+    #buttonsTable{
+        position: absolute;
+        top: 42%;
+        left: 0%;
+        width: 100%;
+        border-spacing: 0px 15pt;
+    }
+    
+    .NormalBtn td{
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25pt;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        color: rgba(0,0,0,0.87);
+    }
+    
+    #img_top{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 33%;
+    }
+    
+    #table_main{
+    top: 34%;
+    }
+    
+    #img_img{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+    .td_maintitleFont{
+        font-size: 18pt;
+    }
+    
+    .btn_bottom{
+        display: table;
+        position: absolute;
+        bottom: 0%;
+        width: 44%;
+        height: 9%;
+        background-image: url('media/nd/home_arrow_3.png');
+    }
+    
+    .td_mainbtn{
+        font-family: 'OpenSansLight';
+        color: white;
+        font-size: 17pt;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 7%;
+        padding-bottom: 1px;
+        background-color: rgba(255,255,255,1);
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+    }
+    
+    #buttonsTable{
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        width: 100%;
+        border-spacing: 0px 15pt;
+    }
+    
+    .NormalBtn td{
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25pt;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        color: rgba(0,0,0,0.87);
+    }
+    
+    #img_top{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 33%;
+    }
+    
+    #table_main{
+    top: 34%;
+    }
+    
+    #img_img{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+	.td_maintitleFont{
+        font-size: 20pt;
+    }
+    
+    .btn_bottom{
+        display: table;
+        position: absolute;
+        bottom: 0%;
+        width: 44%;
+        height: 7.3%;
+        background-image: url('media/nd/home_arrow_3.png');
+    }
+    
+    .td_mainbtn{
+        font-family: 'OpenSansLight';
+        color: white;
+        font-size: 17pt;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 7%;
+        padding-bottom: 1px;
+        background-color: rgba(255,255,255,1);
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+    }
+    
+    #buttonsTable{
+        position: absolute;
+        top: 60%;
+        left: 0%;
+        width: 100%;
+        border-spacing: 0px 15pt;
+    }
+    
+    .NormalBtn td{
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25pt;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        color: rgba(0,0,0,0.87);
+    }
+    
+    #img_top{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 40%;
+        background-color: rgb(107,71,74);
+        background-image: url('media/nd/main_imgbg.png');
+        background-size: 100% 100%;
+    }
+    
+    #table_main{
+    top: 41%;
+    }
+    
+    #img_img{
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+window{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	/* background-image: url('media/nd/bg_1.png'); */
+	/* background-size: cover; */
+    background-color: #D9DEC1;
+    font-family: 'OpenSansRegular';
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+#table_main{
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    border: 0;
+    border-spacing: 0px 0px;
+    padding: 0px;
+    margin: 0px;
+    /* background-color: red; */
+}
+
+#td_maintitle{
+    color: black;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1.1;
+    text-align: center;
+}
+
+#td_mainsubtitle{
+    color: black;
+    font-family: 'OpenSansLight';
+    font-size: 12pt;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 8pt;
+    border-spacing: 0px 3px;
+    text-align: center;
+}
+
+.btn_bottomTr{
+    display: table-row;
+}
+
+.btn_bottomTd{
+    display: table-cell;
+    width: 100%;
+    color: white;
+    font-size: 14pt;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: center;
+    font-family: 'OpenSansLight';
+}
+
+#btn_start{
+    margin: 0 auto;
+}
+
+#btn_start .btn_bottomTd{
+    font-size: 29pt;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#btn_content{
+    margin: 0 auto;
+}
+
+#btn_content .btn_bottomTd{
+    font-size: 29pt;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#btn_about{
+    left: 0%;
+}
+
+#btn_wta{
+    right: -0.1%;
+}
+
+.img_arrow{
+    width: 18.1pt;
+}
+
+.td_mainbimg{
+    width: 18pt;
+    margin-bottom: -3pt;
+}
+
+#buttonsTable td{
+width: 100%;
+text-align: center;
+vertical-align: middle;
+background-size: 100% 100%;
+border-spacing: 0;
+color: white;
+}
+
+.NormalBtn{
+width: 100%;
+padding-left: 0;
+padding-top: 4px;
+padding-bottom: 4px;
+text-align: center;
+font-family: 'OpenSansLight';
+color: white;
+/* border: 1px solid white; */
+/* border-radius: 8px; */
+}
+
+.NormalBtn td{
+color: white;
+}
+
+#btn_bookmarks{
+width: 43%;
+background-image: url('media/nd/bookmark_tab.png');
+background-size: 100% 100%;
+text-align: center;
+font-size: 14pt;
+padding-top: 2pt;
+padding-bottom: 2pt;
+}
+
+
+#sbtable{
+display: table;
+width: 97.5%;
+margin: 0 auto;
+border-radius: 6pt;
+}
+
+
+#div_searchbar{
+display: table-cell;
+width: 100%;
+background-color: #3A8686;
+background-image: url('media/nd/search_bar.png');
+background-size: 100% 100%;
+padding: 10pt 6pt;
+box-sizing: border-box;
+border-radius: 6pt;
+box-shadow: 1px 1px 2px rgb(50,50,50);
+font-size: 13pt;
+font-family: 'OpenSansRegular';
+color: rgb(200,200,200);
+}
+</style>
+</head>
+<body>
+    
+<div id="img_top"><img id="img_img" src="media/nd/main_img1_1.png"></div>
+
+<table id="table_main">
+    <tr>
+        <td id="td_maintitle" class="td_maintitleFont" colspan="2">APP name</td>
+    </tr>
+    <tr>
+        <td id="td_mainsubtitle" colspan="2" style="padding-bottom: 2.2%;display:none;">by <br></td>
+    </tr>
+</table>
+
+
+
+<table id="buttonsTable">
+<tr>
+<td>
+<div class="NormalBtn" id="sbtable">
+<div style="display:table-row;"><div id="div_searchbar" ontouchend="toSE();">
+Search
+</div></div>
+</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<table class="NormalBtn" id="btn_content" ontouchend="toCT();" ontouchstart="onCT();" style="background-image:url('media/nd/home_arrow_2.png');">
+<tr><td>glossary</td></tr>
+</table>
+<table id="table_bm" style="width:100%;border:0;border-spacing:0;">
+<tr>
+<td style="width:57%;text-align:right;font-size:14pt;"></td>
+<td id="btn_bookmarks" ontouchend="toBM();" ontouchstart="onBM();">bookmarks</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table class="NormalBtn" id="btn_game" ontouchend="toGA();" ontouchstart="onGA();" style="background-image:url('media/nd/home_arrow_2.png');">
+<tr><td>game</td></tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+
+
+
+<div class="btn_bottom" id="btn_about" ontouchend="popabout2();" ontouchstart="onbtnbottom(this);">
+    <div class="btn_bottomTr"><div class="btn_bottomTd" style="vertical-align:middle;">about</div></div>
+</div>
+
+<div class="btn_bottom" id="btn_wta" ontouchend="popwta2();" ontouchstart="onbtnbottom(this);">
+    <div class="btn_bottomTr"><div class="btn_bottomTd" style="vertical-align:middle;">why this app?</div></div>
+</div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+    document.body.style.webkitOverflowScrolling='touch';
+    document.body.setAttribute('onselectstart','return false');
+    document.body.style.webkitTouchCallout='none';
+    document.body.style.webkitUserSelect='none';
+}
+
+
+function toWL(){
+	document.getElementById('btn_start').style.backgroundImage='url(\'media/nd/home_arrow_1.png\')';
+    //location.href='tointro://';
+	Android.toWL();
+}
+function onWL(){
+	document.getElementById('btn_start').style.backgroundImage='url(\'media/nd/home_arrow_1_b.png\')';
+}
+
+function toCT(){
+	document.getElementById('btn_content').style.backgroundImage='url(\'media/nd/home_arrow_2.png\')';
+    //location.href='togl://';
+	Android.toCT();
+}
+function onCT(){
+	document.getElementById('btn_content').style.backgroundImage='url(\'media/nd/home_arrow_2_b.png\')';
+}
+
+function toGA(){
+	document.getElementById('btn_game').style.backgroundImage='url(\'media/nd/home_arrow_2.png\')';
+    //location.href='toga://';
+	Android.toGA();
+}
+function onGA(){
+	document.getElementById('btn_game').style.backgroundImage='url(\'media/nd/home_arrow_2_b.png\')';
+}
+
+function toBM(){
+	document.getElementById('btn_bookmarks').style.backgroundImage='url(\'media/nd/bookmark_tab.png\')';
+    //location.href='tobm://';
+	Android.toBM();
+}
+function onBM(){
+	document.getElementById('btn_bookmarks').style.backgroundImage='url(\'media/nd/bookmark_tab_b.png\')';
+}
+
+function toSE(){
+	//location.href='tose://';
+	Android.toSE();
+}
+
+function onSE(){
+
+}
+
+
+function popabout2(){
+	document.getElementById('btn_about').style.backgroundImage='url(\'media/nd/home_arrow_3.png\')';
+    //location.href='app://popabout2';
+	Android.toAbout();
+}
+
+function popwta2(){
+	document.getElementById('btn_wta').style.backgroundImage='url(\'media/nd/home_arrow_3.png\')';
+    //location.href='app://popwta2';
+	Android.toWTA2();
+}
+
+function onbtnbottom(_obj){
+	_obj.style.backgroundImage='url(\'media/nd/home_arrow_3_b.png\')';
+}
+</script>
+</body>
+</html>

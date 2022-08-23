@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "templateprj.ulip.hkbu.com.templateproject",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 7,
+        "versionName": "1.2",
+        "outputFile": "app-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "resources-debug.ap_",
+      "properties": {
+        "packageId": "templateprj.ulip.hkbu.com.templateproject",
+        "split": "",
+        "minSdkVersion": "19"
+      }
+    }
+  ]
+}

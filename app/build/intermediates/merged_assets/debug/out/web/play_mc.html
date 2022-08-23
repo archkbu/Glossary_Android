@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<script type="text/javascript" src="data/subfields.js"></script>
+<script type="text/javascript" src="data/maindata.js"></script>
+<title>Play MC</title>
+<style>
+.ImgClass{
+	width:45%;
+}
+    
+@font-face {
+font-family:"OpenSansLight";
+src: url('font/OpenSans-Light.ttf');
+}
+@font-face {
+font-family: 'OpenSansRegular';
+src: url('font/OpenSans-Regular.ttf');
+}
+
+
+@media(max-height: 480px){ /* iPhone 4 */
+#div_ansTable{
+height: 50%;
+}
+.MCAns{
+width: 68%;
+font-size: 11pt;
+}
+#brssss{
+display: none;
+}
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+#div_ansTable{
+height: 60%;
+}
+.MCAns{
+width: 62%;
+font-size: 12pt;
+}
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+#div_ansTable{
+height: 70%;
+}
+.MCAns{
+width: 50%;
+font-size: 13pt;
+}
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+#div_ansTable{
+height: 70%;
+}
+.MCAns{
+width: 50%;
+font-size: 13pt;
+}
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+#div_ansTable{
+height: 70%;
+}
+.MCAns{
+width: 50%;
+font-size: 13pt;
+}
+}
+
+
+body{
+background-color: #D9DEC1;
+font-family: 'OpenSansRegular';
+overflow: hidden;
+color: white;
+}
+
+#div_topBar{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 8%;
+font-size: 15pt;
+background-color: rgba(30,109,106,1);
+}
+
+#td_div_topBar{
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+}
+
+#div_addbookmarkbutton{
+display: table;
+position: absolute;
+top: 91.5%;
+left: 25%;
+width: 50%;
+height: 7%;
+font-size: 14pt;
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+color: white;
+}
+
+#div_ansTable{
+display: table;
+position: absolute;
+top: 15%;
+left: 1%;
+width: 98%;
+/* background-color: rgba(55,139,136,1); */
+/* background-image: url('media/nd/bg_2.png'); */
+background-size: 100% 100%;
+border-radius: 10px;
+}
+
+#div_ansTableTerms{
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+height: 47%;
+}
+
+#span_ansTableTerms{
+font-size: 25pt;
+color: black;
+}
+
+#span_timer{
+font-size: 19pt;
+color: rgba(30,109,106,1);
+}
+
+#div_ansTableAns{
+display: table-cell;
+text-align: center;
+vertical-align: middle;
+height: 53%;
+}
+
+#div_ansTableMain{
+display: table;
+position: absolute;
+top: 52%;
+left: 0%;
+width: 100%;
+}
+
+#div_ansTableMain_td{
+display: table-cell;
+width: 100%;
+height: 100%;
+text-align: center;
+}
+
+#input_ansTableAn{
+font-size: 20pt;
+text-align: center;
+width: 80%;
+}
+
+#div_resultDiv{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.9);
+}
+
+#div_resultTdDiv{
+display: table-cell;
+width: 100%;
+height: 100%;
+text-align: center;
+vertical-align: middle;
+font-size: 35pt;
+color: white;
+}
+
+.MCAns{
+text-align: center;
+margin: 5pt auto;
+padding-top: 8pt;
+padding-bottom: 8pt;
+background-image: url('media/nd/optiontab.png');
+background-size: 100% 100%;
+color: white;
+}
+
+#div_resultTdCAns{
+font-size: 17pt;
+color: white;
+}
+
+.Tfimg{
+width: 50%;
+}
+
+#div_level{
+position: absolute;
+top: 9%;
+right: 2%;
+font-size: 15pt;
+font-weight: bold;
+color: black;
+}
+
+#div_nextgameShow{
+position: absolute;
+top: 18%;
+left: 4%;
+width: 91.1%;
+height: 63%;
+color: white;
+background-color: #328C8A;
+border: 3px solid #226260;
+border-radius: 6px;
+}
+
+#divtable_nextgameShow{
+display: table;
+width: 100%;
+height: 100%;
+}
+
+</style>
+</head>
+<body>
+    
+
+<div id="div_topBar"><div style="display:table-row;"><div id="td_div_topBar">Question  of </div></div></div>
+
+
+<div id="div_ansTable">
+<div style="display:table-row;"><div id="div_ansTableTerms">
+<span id="span_ansTableTerms"></span>
+<br>
+<span id="brssss"><br><br><br></span>
+<span id="span_timer"></span>
+</div></div>
+<div style="display:table-row;"><div id="div_ansTableAns">
+<div id="div_ansTableMain">
+<div class="MCAns" id="obj_btn_1"></div>
+<div class="MCAns" id="obj_btn_2"></div>
+<div class="MCAns" id="obj_btn_3"></div>
+<div class="MCAns" id="obj_btn_4"></div>
+</div>
+</div></div>
+</div>
+
+
+<div id="div_addbookmarkbutton">
+<div style="display:table-row;">
+<div id="div_addbookmarkbutton_value" style="display:table-cell;text-align:center;vertical-align:middle;"></div>
+</div>
+</div>
+
+
+<div id="div_level"></div>
+
+
+<div id="div_resultDiv" style="display:none;"><div style="display:table-row;"><div id="div_resultTdDiv"></div></div></div>
+
+
+
+<div id="div_nextgameShow" style="display:none;">
+<div id="divtable_nextgameShow">
+<div style="display:table-row;">
+<div style="display:table-cell;width:100%;height:50%;text-align:center;vertical-align:middle;">
+Congratulations!<br>You have advanced to Level <span id="span_nglv"></span>.<br>Now select the correct translation within <span id="span_ngsec"></span> seconds.
+</div>
+</div>
+<div style="display:table-row;">
+<div style="display:table-cell;width:100%;height:50%;text-align:center;vertical-align:bottom;">
+<span id="span_ptng">Proceed to new game</span><br><br><br>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+
+var animating=false;
+var gtimer=null;
+var ttimer=null;
+var ttime=0;
+var lang='';
+var subfield='';
+var old_bookmarks={};
+var bookmarks={};
+var inIndex=0;
+var inIndex2=0;
+var inKey=0;
+var preprocessedArr=[];
+var theAns=[];
+var anslist=[];
+var canssss=[];
+var pushed=false;
+var timertime=2000;
+
+
+var qnum=0;
+var qcount=10;
+var level=0;
+var maxLevel=4;
+var timeoutV1=[8000,7000,5000,3000];
+var noOfLevel=[10,10,10,10]; //[10,10,10,10] [3,3,3,3]
+var marks=[0,0,0,0];
+var drawnPool=[];
+
+
+
+
+var obj_div_addbookmarkbutton=document.getElementById('div_addbookmarkbutton');
+var obj_span_ansTableTerms=document.getElementById('span_ansTableTerms');
+var obj_div_submitbtn=document.getElementById('div_submitbtn');
+var obj_div_ansTableMain=document.getElementById('div_ansTableMain');
+var obj_div_level=document.getElementById('div_level');
+var obj_span_timer=document.getElementById('span_timer');
+
+
+function initGame(_lang,_subfield,_bookmarks,_level){
+lang=_lang;
+subfield=_subfield;
+level=_level;
+//if(level==3)level=0;
+old_bookmarks=_bookmarks;
+if(bookmarks.eng==null)bookmarks.eng=[];
+if(bookmarks.chi==null)bookmarks.chi=[];
+for(var i=0; i<old_bookmarks[lang].length; i++){
+var bmv=old_bookmarks[lang][i];
+var bmKey=(bmv.split(','))[0];
+var bmData=(bmv.split(','))[1];
+bookmarks[lang].push({"key":bmKey,"data":bmData});
+}
+refreshMainData();
+level++;
+draw();
+setBookmarked(false);
+for(var i=0; i<bookmarks[lang].length; i++){
+if(bookmarks[lang][i].key==preprocessedArr[inIndex].key && bookmarks[lang][i].data==preprocessedArr[inIndex].id)setBookmarked(true);
+}
+}
+
+
+function drawInRefers(_ref){
+var dnum=0;
+if(_ref.length>1)dnum=getRandomIntInclusive(0,_ref.length-1);
+return dnum;
+}
+
+
+var pabobj_span_ttc=toPABObject(document.getElementById('span_ptng'));
+pabobj_span_ttc.doMouseEvent('click',function(_e){
+document.getElementById('div_nextgameShow').style.display='none';
+dafter2();
+});
+
+
+
+function dafter2(){
+if(level>1){
+obj_span_timer.innerHTML=timeoutV1[level-1]/1000+"s";
+gtimer=window.setTimeout("timerFun()",timeoutV1[level-1]);
+ttime=(timeoutV1[level-1]/1000);
+ttimer=setInterval(function(){
+ttime--;
+obj_span_timer.innerHTML=ttime+"s";
+},1000);
+}
+}
+
+
+
+function draw(){
+qnum++;
+var needDAF=true;
+if(qnum>noOfLevel[level-1]){
+level++;
+if(subfield=='bookmarked'){drawnPool=[];}
+qnum=1;
+document.getElementById('div_nextgameShow').style.display='';
+document.getElementById('span_nglv').innerHTML=level;
+document.getElementById('span_ngsec').innerHTML=(timeoutV1[level-1]/1000);
+needDAF=false;
+}
+document.getElementById('td_div_topBar').innerHTML='Question '+qnum+' of '+noOfLevel[level-1];
+obj_div_level.innerHTML='Level '+level;
+if((level>maxLevel) && !pushed){
+document.getElementById('div_nextgameShow').style.display='none';
+pushed=true;
+setTimeout(function(){
+Android.toresult(JSON.stringify(anslist));
+},10);
+window.clearTimeout(gtimer);
+return;
+}
+inIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+
+var checkindex=function(){
+for(var j=0; j<drawnPool.length; j++){if(drawnPool[j]==inIndex)return true;}return false;
+}
+while(checkindex()){
+inIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+}
+drawnPool.push(inIndex);
+
+inKey=preprocessedArr[inIndex].key;
+inIndex2=preprocessedArr[inIndex].id;
+var rans='';
+var con=getContentById(preprocessedArr[inIndex].refers[drawInRefers(preprocessedArr[inIndex].refers)]);
+if(lang=='eng')rans=con.Chinese;
+else if(lang=='chi')rans=con.English;
+var rindex=getRandomIntInclusive(0,3);
+var incorrans=[];
+for(var j=0; j<3; j++){
+var tmp_rans='';
+var anotherIndex=0;
+
+var checkFun2=function(){
+for(var z=0; z<incorrans.length; z++){
+if(incorrans[z]==tmp_rans)return true;
+}
+return false;
+}
+
+do{
+anotherIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+}while(anotherIndex==inIndex)
+var con=getContentById(preprocessedArr[anotherIndex].refers[drawInRefers(preprocessedArr[anotherIndex].refers)]);
+if(lang=='eng')tmp_rans=con.Chinese;
+else if(lang=='chi')tmp_rans=con.English;
+while(checkFun2()){
+do{
+anotherIndex=getRandomIntInclusive(0,preprocessedArr.length-1);
+}while(anotherIndex==inIndex)
+var con=getContentById(preprocessedArr[anotherIndex].refers[drawInRefers(preprocessedArr[anotherIndex].refers)]);
+if(lang=='eng')tmp_rans=con.Chinese;
+else if(lang=='chi')tmp_rans=con.English;
+}
+incorrans.push(tmp_rans);
+}
+theAns=[];
+var added=0;
+for(var j=0; j<4; j++){
+if(j!=rindex){theAns.push(incorrans[added]);added++;}
+else theAns.push('');
+}
+theAns[rindex]=rans;
+for(var i=0; i<4; i++){
+document.getElementById('obj_btn_'+(i+1)).style.backgroundImage='url(\'media/nd/optiontab.png\')';
+document.getElementById('obj_btn_'+(i+1)).innerHTML=theAns[i];
+}
+obj_span_ansTableTerms.innerHTML=preprocessedArr[inIndex].name;
+if(needDAF)dafter2();
+}
+
+
+
+function timerFun(){
+animating=true;
+
+var splitl='、';
+if(lang=='chi')splitl=',';
+clearInterval(ttimer);
+document.getElementById('div_resultDiv').style.display='';
+document.getElementById('div_resultTdDiv').style.color='red';
+document.getElementById('div_resultTdDiv').innerHTML='<img class="Tfimg" src="media/wrong.png">';
+var div_resultTdCAns=document.createElement('div');
+div_resultTdCAns.setAttribute('id','div_resultTdCAns');
+checkAns('',preprocessedArr[inIndex].name);
+for(var i=0; i<canssss.length; i++){
+if(i==0)div_resultTdCAns.innerHTML='<br><br>Answer(s):<br>'+canssss[i];
+else div_resultTdCAns.innerHTML=div_resultTdCAns.innerHTML+splitl+'<br>'+canssss[i];
+}
+document.getElementById('div_resultTdDiv').appendChild(div_resultTdCAns);
+document.getElementById('div_resultDiv').style.display='';
+setTimeout(function(){
+document.getElementById('div_resultDiv').style.display='none';
+animating=false;
+draw();
+},timertime);
+
+}
+
+
+
+function getRandomIntInclusive(min,max){
+return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+
+
+function getContentById(_id){
+for(var i=_id; i<maindata.content.length; i++){
+if(maindata.content[i].id==_id)return maindata.content[i];
+}
+return null;
+}
+
+
+
+function refreshMainData(){
+var langlist=lang+'list';
+if(subfield=='bookmarked'){
+for(var i=0; i<bookmarks[lang].length; i++){
+var bmKey=bookmarks[lang][i].key;
+var bmData=bookmarks[lang][i].data;
+preprocessedArr.push({"name":maindata[langlist][bmKey].data[bmData].name,"id":bmData,"refers":maindata[langlist][bmKey].data[bmData].refers,"level":1,"key":bmKey});
+}
+}else{
+for(var p=0; p<maindata[langlist].length; p++){
+for(var i=0; i<maindata[langlist][p].data.length; i++){
+if(subfield!='all'){
+var needAdd=false;
+for(var k in maindata[langlist][p].data[i].refers){
+var con=getContentById(maindata[langlist][p].data[i].refers[k]);
+if(con.Subfield_1.toLowerCase()==subfield)needAdd=true;
+}
+if(needAdd){preprocessedArr.push({"name":maindata[langlist][p].data[i].name,"id":i,"refers":maindata[langlist][p].data[i].refers,"key":p});}
+}else{
+preprocessedArr.push({"name":maindata[langlist][p].data[i].name,"id":i,"refers":maindata[langlist][p].data[i].refers,"key":p});
+}
+}
+}
+}
+//alert(JSON.stringify(preprocessedArr));
+}
+
+
+
+function checkAns(_ans,_quest){
+var isRight=false;
+canssss=[];
+for(var i=0; i<preprocessedArr[inIndex].refers.length; i++){
+var con=getContentById(preprocessedArr[inIndex].refers[i]);
+if(lang=='eng')canssss.push(con.Chinese);
+else if(lang=='chi')canssss.push(con.English);
+if(lang=='eng' && con.Chinese==_ans){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":level,"result":true});return true;}
+else if(lang=='chi' && con.English==_ans){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":level,"result":true});return true;}
+}
+if(isRight)return isRight;
+if(lang=='eng'){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":level,"result":false});}
+else if(lang=='chi'){anslist.push({"quest":_quest,"lang":lang,"id":inIndex2,"key":inKey,"typed":_ans,"qnum":qnum,"level":level,"result":false});}
+return isRight;
+}
+
+
+
+var pabobj_div_addbookmarkbutton=toPABObject(obj_div_addbookmarkbutton);
+pabobj_div_addbookmarkbutton.doMouseEvent('mouseup',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected.png\')';
+var isAdd=true;
+for(var i=0; i<bookmarks[lang].length; i++){
+if(bookmarks[lang][i].data==preprocessedArr[inIndex].id){
+isAdd=false;bookmarks[lang].splice(i,1);
+}
+}
+if(isAdd)bookmarks[lang].push({"key":preprocessedArr[inIndex].key,"data":preprocessedArr[inIndex].id});
+Android.addbm(lang+":"+preprocessedArr[inIndex].key+","+preprocessedArr[inIndex].id);
+});
+pabobj_div_addbookmarkbutton.doMouseEvent('mousedown',function(){
+obj_div_addbookmarkbutton.style.backgroundImage='url(\'media/nd/button_deselected_b.png\')';
+});
+function setBookmarked(_bool){
+if(_bool)document.getElementById('div_addbookmarkbutton_value').innerHTML='- Bookmarks';
+else document.getElementById('div_addbookmarkbutton_value').innerHTML='+ Bookmarks';
+}
+
+
+
+var pab_obj_btn_1=toPABObject(obj_btn_1);
+var pab_obj_btn_2=toPABObject(obj_btn_2);
+var pab_obj_btn_3=toPABObject(obj_btn_3);
+var pab_obj_btn_4=toPABObject(obj_btn_4);
+
+function ansbtnClicked(_index){
+if(animating)return;
+if(gtimer!=null)window.clearTimeout(gtimer);
+var anscor=checkAns(theAns[_index],preprocessedArr[inIndex].name);
+if(anscor){
+marks[level-1]++;
+document.getElementById('div_resultTdDiv').style.color='green';
+document.getElementById('div_resultTdDiv').innerHTML='<img class="Tfimg" src="media/tick.png">';
+}else{
+var splitl='、';
+if(lang=='chi')splitl=',';
+document.getElementById('div_resultDiv').style.display='';
+document.getElementById('div_resultTdDiv').style.color='red';
+document.getElementById('div_resultTdDiv').innerHTML='<img class="Tfimg" src="media/wrong.png">';
+var div_resultTdCAns=document.createElement('div');
+div_resultTdCAns.setAttribute('id','div_resultTdCAns');
+for(var i=0; i<canssss.length; i++){
+if(i==0)div_resultTdCAns.innerHTML='<br><br>Answer(s):<br>'+canssss[i];
+else div_resultTdCAns.innerHTML=div_resultTdCAns.innerHTML+splitl+'<br>'+canssss[i];
+}
+document.getElementById('div_resultTdDiv').appendChild(div_resultTdCAns);
+}
+document.getElementById('div_resultDiv').style.display='';
+clearInterval(ttimer);
+setTimeout(function(){
+if(anscor){
+document.getElementById('div_resultDiv').style.display='none';
+draw();}else Android.toresult(JSON.stringify(anslist));
+},timertime);
+}
+
+pab_obj_btn_1.doMouseEvent('mouseup',function(){obj_btn_1.style.backgroundImage='url(\'media/nd/optiontab.png\')';ansbtnClicked(0);});
+pab_obj_btn_1.doMouseEvent('mousedown',function(){obj_btn_1.style.backgroundImage='url(\'media/nd/optiontab_b.png\')';});
+
+pab_obj_btn_2.doMouseEvent('mouseup',function(){obj_btn_2.style.backgroundImage='url(\'media/nd/optiontab.png\')';ansbtnClicked(1);});
+pab_obj_btn_2.doMouseEvent('mousedown',function(){obj_btn_2.style.backgroundImage='url(\'media/nd/optiontab_b.png\')';});
+
+pab_obj_btn_3.doMouseEvent('mouseup',function(){obj_btn_3.style.backgroundImage='url(\'media/nd/optiontab.png\')';ansbtnClicked(2);});
+pab_obj_btn_3.doMouseEvent('mousedown',function(){obj_btn_3.style.backgroundImage='url(\'media/nd/optiontab_b.png\')';});
+
+pab_obj_btn_4.doMouseEvent('mouseup',function(){obj_btn_4.style.backgroundImage='url(\'media/nd/optiontab.png\')';ansbtnClicked(3);});
+pab_obj_btn_4.doMouseEvent('mousedown',function(){obj_btn_4.style.backgroundImage='url(\'media/nd/optiontab_b.png\')';});
+
+
+//javascript:initGame('eng','bookmarked',{"eng":["0,14","17,40","22,28","19,106","18,252","22,24","20,27","0,57","21,1","21,7","24,0","22,34"],"chi":[]},0);
+</script>
+
+
+<img class="ImgClass" src="media/tips/mc_select.png" id="tip_select" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/mc_bookmark.png" id="tip_bookmark" style="position:absolute;z-index:100;visibility:hidden">
+<div onclick="javascript:show_tips(false);" id="tip_black" style="height:100%;width:100%;background-color:black;position:absolute;z-index:1;top:0px;left:0px;opacity:0.6;z-index:99;visibility:hidden"></div>
+<script>
+
+	document.getElementById('tip_select').style.bottom='48%';
+	document.getElementById('tip_select').style.left="25%";
+
+	document.getElementById('tip_bookmark').style.bottom='8%';
+	document.getElementById('tip_bookmark').style.left='55%';
+	
+	function show_tips(visible){
+		var v ='';
+		if (visible==true){v='visible';}
+		else {v='hidden';}
+		document.getElementById('tip_select').style.visibility=v;
+		document.getElementById('tip_bookmark').style.visibility=v;
+		document.getElementById('tip_black').style.visibility=v;
+	}
+</script>
+</body>
+</html>

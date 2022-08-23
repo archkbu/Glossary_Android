@@ -1,0 +1,4 @@
+#Thu Aug 11 17:57:45 HKT 2022
+base.0=/Users/priere/Documents/GitHub/Glossary_Android/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

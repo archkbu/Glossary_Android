@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/arc1/Documents/GitHub/LSHK-Android-open/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mk-rMK/values-mk-rMK.xml",
+            "outputFile": "/Users/priere/Documents/GitHub/Glossary_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mk-rMK/values-mk-rMK.xml",
             "map": [
                 {
-                    "source": "/Users/arc1/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/59acda82df8849c7f0970110851385ce/res/values-mk-rMK/values-mk-rMK.xml",
+                    "source": "/Users/priere/.gradle/caches/transforms-2/files-2.1/04a3ad37f46c10ce4755ca516eb29fde/appcompat-v7-23.0.1/res/values-mk-rMK/values-mk-rMK.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

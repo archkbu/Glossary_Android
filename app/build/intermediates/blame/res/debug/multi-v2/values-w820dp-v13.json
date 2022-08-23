@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/arc1/Documents/GitHub/LSHK-Android-open/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
+            "outputFile": "/Users/priere/Documents/GitHub/Glossary_Android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w820dp-v13/values-w820dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/arc1/Documents/GitHub/LSHK-Android-open/app/src/main/res/values-w820dp/dimens.xml",
+                    "source": "/Users/priere/Documents/GitHub/Glossary_Android/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",

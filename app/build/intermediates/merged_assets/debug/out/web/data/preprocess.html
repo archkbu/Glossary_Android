@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="maindata_1.js"></script>
+<script type="text/javascript" src="ca.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+function findStoke(_s){
+for(var i=0; i<ca.length; i++){
+if(ca[i].id==_s)return ca[i].stoke;
+}
+return null;
+}
+
+var newJson={};
+var newArr_1=[];
+var englist=[];
+var chilist=[];
+var new_englist=[];
+var new_chilist=[];
+
+for(var i=0; i<maindata.length; i++){
+var needAdd=true;
+if(maindata[i].RAD=='D')needAdd=false;
+if(needAdd){
+var newJson2=maindata[i];
+newJson2.id=newArr_1.length;
+newArr_1.push(newJson2);
+}
+}
+
+
+for(var i=0; i<newArr_1.length; i++){
+var isNew=true;var inIndex=0;
+for(var k=0; k<englist.length; k++){
+if(englist[k].name==newArr_1[i].English){isNew=false;inIndex=k;}
+}
+if(isNew){
+englist.push({"name":newArr_1[i].English,"refers":[newArr_1[i].id]});
+}else{
+englist[inIndex].refers.push(newArr_1[i].id);
+}
+}
+new_englist=[{"key":"A","data":[]},{"key":"B","data":[]},{"key":"C","data":[]},{"key":"D","data":[]},{"key":"E","data":[]},{"key":"F","data":[]},{"key":"G","data":[]},{"key":"H","data":[]},{"key":"I","data":[]},{"key":"J","data":[]},{"key":"K","data":[]},{"key":"L","data":[]},{"key":"M","data":[]},{"key":"N","data":[]},{"key":"O","data":[]},{"key":"P","data":[]},{"key":"Q","data":[]},{"key":"R","data":[]},{"key":"S","data":[]},{"key":"T","data":[]},{"key":"U","data":[]},{"key":"V","data":[]},{"key":"W","data":[]},{"key":"X","data":[]},{"key":"Z","data":[]}];
+for(var i=0; i<englist.length; i++){
+var onKey=englist[i].name.substr(0,1).toString().toUpperCase();
+for(var k=0; k<new_englist.length; k++){
+if(new_englist[k].key==onKey){
+new_englist[k].data.push(englist[i]);
+}
+}
+}
+
+
+for(var i=0; i<newArr_1.length; i++){
+var isNew=true;var inIndex=0;
+for(var k=0; k<chilist.length; k++){
+if(chilist[k].name==newArr_1[i].Chinese){isNew=false;inIndex=k;}
+}
+if(isNew){
+chilist.push({"name":newArr_1[i].Chinese,"refers":[newArr_1[i].id]});
+}else{
+chilist[inIndex].refers.push(newArr_1[i].id);
+}
+}
+new_chilist=[{"key":0,"data":[]},{"key":1,"data":[]},{"key":2,"data":[]},{"key":3,"data":[]},{"key":4,"data":[]},{"key":5,"data":[]},{"key":6,"data":[]},{"key":7,"data":[]},{"key":8,"data":[]},{"key":9,"data":[]},{"key":10,"data":[]},{"key":11,"data":[]},{"key":12,"data":[]},{"key":15,"data":[]}];
+for(var i=0; i<chilist.length; i++){
+var onKey=findStoke(chilist[i].name.substr(0,1).toString());
+for(var k=1; k<new_chilist.length; k++){
+if(new_chilist[k].key==onKey || (new_chilist[k].key==12 && onKey>=12 && onKey<15) || (new_chilist[k].key==15 && onKey>=15)){
+new_chilist[k].data.push(chilist[i]);
+}else if(onKey==null){
+var nnew=true;
+for(var t=0; t<new_chilist[0].data.length; t++){
+if(new_chilist[0].data[t].name==chilist[i].name)nnew=false;
+}
+if(nnew)new_chilist[0].data.push(chilist[i]);
+}
+}
+}
+
+
+newJson.englist=new_englist;
+newJson.chilist=new_chilist;
+newJson.content=newArr_1;
+
+document.write('maindata='+JSON.stringify(newJson)+';');
+
+</script>
+
+</body>
+</html>

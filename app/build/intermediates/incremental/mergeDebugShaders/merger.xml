@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/arc1/Documents/GitHub/LSHK-Android-open/app/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/arc1/Documents/GitHub/LSHK-Android-open/app/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/priere/Documents/GitHub/Glossary_Android/app/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/priere/Documents/GitHub/Glossary_Android/app/src/debug/shaders"/></dataSet></merger>

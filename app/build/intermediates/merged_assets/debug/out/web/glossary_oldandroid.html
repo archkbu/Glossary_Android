@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="../jquery/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="phoneappbuilder.js"></script>
+<script type="text/javascript" src="data/subfields.js"></script>
+<script type="text/javascript" src="data/maindata.js"></script>
+<title>Glossary</title>
+<style>
+    
+@font-face {
+font-family:"OpenSansLight";
+src: url('font/OpenSans-Light.ttf');
+}
+@font-face {
+font-family: 'OpenSansRegular';
+src: url('font/OpenSans-Regular.ttf');
+}
+.ImgClass{
+	width:45%;
+}
+
+@media(max-height: 480px){ /* iPhone 4 */
+#stokeTable{
+top: 30%;
+font-size: 8px;
+}
+
+
+}
+
+@media(min-height: 481px) and (max-height: 568px){ /* iPhone 5 */
+#stokeTable{
+top: 30%;
+font-size: 8px;
+}
+
+
+}
+
+@media(min-height: 569px) and (max-height: 667px){ /* iPhone 6 */
+#stokeTable{
+top: 30%;
+font-size: 8px;
+}
+
+
+}
+
+@media(min-height: 668px) and (max-height: 959px){ /* iPhone 6 Plus */
+#stokeTable{
+top: 30%;
+font-size: 8px;
+}
+
+
+}
+
+@media(min-height: 960px) and (min-width: 768px){  /* iPad */
+#stokeTable{
+top: 30%;
+font-size: 8px;
+}
+
+
+}
+
+
+body{
+background-color: #D9DEC1;
+font-family: 'OpenSansRegular';
+overflow: hidden;
+color: black;
+}
+
+#div_bottomDiv{
+position: absolute;
+bottom: 0.5%;
+left: 1%;
+width: 98%;
+height: 7%;
+}
+
+#div_bottomTable{
+display: table;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+border-spacing: 2.5pt;
+padding: 0;
+}
+
+.div_tt_td{
+display: table-cell;
+width: 50%;
+height: 100%;
+text-align: center;
+vertical-align: middle;
+color: white;
+}
+
+#div_tt_td_1{
+background-image: url('media/nd/button_selected.png');
+background-size: 100% 100%;
+}
+
+#div_tt_td_2{
+background-image: url('media/nd/button_deselected.png');
+background-size: 100% 100%;
+}
+
+#div_mainDiv{
+display: table;
+position: absolute;
+top: 0.5%;
+left: 1%;
+width: 98%;
+height: 91.2%;
+}
+
+.MainDiv_Td{
+display: table-cell;
+}
+
+#div_lsubfieldDiv{
+display: table;
+width: 100%;
+height: 90pt;
+max-height: 90pt;
+background-image: url('media/nd/ls_subfield_tab.png');
+background-size: 100% 100%;
+}
+
+#div_lsubfieldDiv_Td_1{
+display: table-cell;
+height: 100%;
+width: 29%;
+text-align: left;
+vertical-align: middle;
+overflow: hidden;
+}
+
+#div_lsubfieldDiv_Td_2{
+display: table-cell;
+height: 100%;
+/* background-color: rgba(200,200,200,0.3); */
+width: 71%;
+text-align: left;
+vertical-align: middle;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+#div_lsubfieldDiv_Td_2_content{
+height: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+font-size: 15pt;
+}
+
+#div_mainDiv_Td_1{
+height: 90pt;
+}
+
+#div_mainDiv_Td_2{
+height:40pt;
+text-align: center;
+vertical-align: middle;
+font-size: 15pt;
+}
+
+.SelectedSubfield{
+background-color: rgba(53,133,131,0.8);
+width: 100%;
+}
+
+#div_mainDiv_Td_3_content{
+width: 90%;
+height: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+.MainlistDiv{
+display: table;
+width: 100%;
+height: 30pt;
+}
+
+.MainListTitleDiv{
+background-color: rgba(150,150,150,0.3);
+}
+
+.MainlistDivOdd{
+/* background-color: rgba(30,30,30,0.5); */
+color: rgb(50,50,50);
+}
+
+.MainlistDivEven{
+background-color: rgba(200,200,200,0.3);
+color: black;
+}
+
+.MainListTd{
+display: table-cell;
+width: 100%;
+height: 99.3%;
+vertical-align: middle;
+padding-left: 5px;
+}
+
+#input_searchbar{
+width: 94%;
+font-size: 15pt;
+text-align: center;
+background-image: url('media/nd/search_bar.png');
+background-size: 100% 100%;
+background-color: rgba(0,0,0,0);
+border: 0;
+}
+
+
+#stokeTable{
+    width: 10%;
+    position: fixed;
+    right: 0%;
+    border-spacing: 0px;
+    color: rgb(70,70,70);
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+
+<div id="div_bottomDiv">
+<div id="div_bottomTable">
+<div style="display:table-row;">
+<div class="div_tt_td" id="div_tt_td_1">English</div>
+<div class="div_tt_td" id="div_tt_td_2">Chinese</div>
+</div>
+</div>
+</div>
+
+
+<div id="div_mainDiv">
+<div style="display:table-row;"><div class="MainDiv_Td" id="div_mainDiv_Td_1">
+
+<div id="div_lsubfieldDiv">
+<div style="display:table-row;">
+<div id="div_lsubfieldDiv_Td_1" style="padding-left:3px;">
+Linguistic<br>subfield
+</div>
+<div id="div_lsubfieldDiv_Td_2">
+<div id="div_lsubfieldDiv_Td_2_content"></div>
+</div>
+</div>
+</div>
+
+</div></div>
+<div style="display:table-row;"><div class="MainDiv_Td" id="div_mainDiv_Td_2">
+<input id="input_searchbar" type="text" placeholder="Search">
+</div></div>
+
+<div style="display:table-row;"><div class="MainDiv_Td" id="div_mainDiv_Td_3">
+<div id="div_mainDiv_Td_3_content"></div>
+</div></div>
+</div>
+
+
+<script type="text/javascript">
+document.body.onload=function(){
+document.body.style.webkitOverflowScrolling='touch';
+document.body.setAttribute('onselectstart','return false');
+document.body.style.webkitTouchCallout='none';
+document.body.style.webkitUserSelect='none';
+}
+
+var obj_div_lsubfieldDiv_Td_2_content=document.getElementById('div_lsubfieldDiv_Td_2_content');
+var obj_input_searchbar=document.getElementById('input_searchbar');
+
+var inSubfield='';
+var inLang='eng';
+var subfieldTouched=false;
+var subfieldMoved=false;
+var mainlistTouched=false;
+var mainlistMoved=false;
+var bookmarks={};
+var old_bookmarks={};
+var searchV='';
+var olsSearch='';
+var renderedData=[];
+var old_stokeTable=null;
+var touchingList=null;
+var titlesArr={"eng":["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],"chi":[0,1,2,3,4,5,6,7,8,9,10,11,12,15]};
+var windowPAB=toPABObject(window);
+windowPAB.touching=false;
+
+
+var div_tt_td_1_PABO=toPABObject(document.getElementById('div_tt_td_1'));
+var div_tt_td_2_PABO=toPABObject(document.getElementById('div_tt_td_2'));
+
+div_tt_td_1_PABO.doMouseEvent('click',function(){
+div_tt_td_1_PABO.htmlObject.style.backgroundImage="url('media/nd/button_selected.png')";
+div_tt_td_2_PABO.htmlObject.style.backgroundImage="url('media/nd/button_deselected.png')";
+inLang='eng';
+resetLanguage();
+});
+div_tt_td_2_PABO.doMouseEvent('click',function(){
+div_tt_td_1_PABO.htmlObject.style.backgroundImage="url('media/nd/button_deselected.png')";;
+div_tt_td_2_PABO.htmlObject.style.backgroundImage="url('media/nd/button_selected.png')";
+inLang='chi';
+resetLanguage();
+});
+
+
+
+obj_input_searchbar.onkeyup=function(){
+searchSomething();
+}
+
+obj_input_searchbar.onblur=function(){
+searchSomething();
+}
+
+
+
+function searchSomething(){
+searchV=obj_input_searchbar.value;
+if(olsSearch==searchV)return;
+if(searchV!=''){
+searchV=searchV.toLowerCase();
+var nsf=inSubfield;
+inSubfield='';
+refreshMainData(nsf);
+}
+olsSearch=searchV;
+}
+
+
+
+function resetLanguage(){
+var nsf=inSubfield;
+inSubfield='';
+refreshMainData(nsf);
+}
+
+function refreshSubfields(){
+var content='';
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content='<div class="SelectedSubfield" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\'All\');">All</div>';
+else content='<div class="SelectedSubfield" onclick="subfieldSelected(this,\'All\');">All</div>';
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content=content+'<div class="" id="div_bmobj" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\'Bookmarked\');">Bookmarked</div>';
+else content=content+'<div class="" id="div_bmobj" onclick="subfieldSelected(this,\'Bookmarked\');">Bookmarked</div>';
+for(var i in subfields['Subfield1']){
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)content=content+'<div class="" ontouchstart="subfieldonts();" ontouchend="subfieldSelected(this,\''+subfields['Subfield1'][i]['key']+'\');">'+subfields['Subfield1'][i]['name']+' ['+subfields['Subfield1'][i]['key']+']</div>';
+else content=content+'<div class="" onclick="subfieldSelected(this,\''+subfields['Subfield1'][i]['key']+'\');">'+subfields['Subfield1'][i]['name']+' ['+subfields['Subfield1'][i]['key']+']</div>';
+}
+obj_div_lsubfieldDiv_Td_2_content.innerHTML=content;
+}
+refreshSubfields();
+
+function getContentById(_id){
+for(var i=_id; i<maindata.content.length; i++){
+if(maindata.content[i].id==_id)return maindata.content[i];
+}
+return null;
+}
+
+function subfieldonts(){
+subfieldTouched=true;
+subfieldMoved=false;
+}
+
+function mainlistonts(_obj){
+mainlistTouched=true;
+mainlistMoved=false;
+touchingList=_obj;
+_obj.style.backgroundColor='rgba(50,50,50,0.5)';
+}
+
+document.getElementById('div_mainDiv_Td_3_content').onscroll=function(e){
+if(mainlistTouched){mainlistMoved=true;if(touchingList!=null)touchingList.style.backgroundColor='';}
+}
+
+document.getElementById('div_lsubfieldDiv_Td_2_content').onscroll=function(e){
+if(subfieldTouched)subfieldMoved=true;
+}
+
+//document.ontouchmove=function(_e){}
+
+function subfieldSelected(_obj,_in){
+subfieldTouched==false;
+if(subfieldMoved==false){
+var divs=obj_div_lsubfieldDiv_Td_2_content.getElementsByTagName('div');
+for(var d in divs){
+try{if(divs[d].getAttribute('class')=='SelectedSubfield')divs[d].setAttribute('class','');}catch(e){}
+}
+_obj.setAttribute('class','SelectedSubfield');
+/*if(_in.toLowerCase()=='bookmarked'){if(bookmarks[inLang].length>0)location.href='inbm://';}
+else location.href='ninbm://';*/
+refreshMainData(_in); // Very slow
+}
+}
+
+function mainlistRowSelected(_index,_p,_obj){
+_obj.style.backgroundColor='';
+touchingList=null;
+mainlistTouched=false;
+if(mainlistMoved==false){
+
+ 	//iOS
+	/*if(inLang=='eng')location.href="todetailseng://"+escape(JSON.stringify({"key":_p,"data":_index}));
+	else location.href="todetailschi://"+escape(JSON.stringify({"key":_p,"data":_index}));
+	}*/
+	
+	//Android
+	if(inLang=='eng'){
+		//Android.todetailseng( JSON.stringify({"key":_p,"data":_index}) );
+		Android.todetailseng( _p,_index) ;
+	}
+	else {
+		//Android.todetailschi( JSON.stringify({"key":_p,"data":_index}) );	
+		Android.todetailschi( _p,_index) ;	
+	}
+}
+
+}
+
+var makeMainListContent=function(_content,_langlist,_i,_p,_ii,_sf){
+var str1='MainlistDivEven';
+if(_ii%2==0)str1='MainlistDivOdd';
+var funname='onclick';
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported()==true)funname='ontouchstart="mainlistonts(this);" ontouchend';
+var sf='';
+for(var d in _sf){
+if(d>0)sf=sf+','+_sf[d];
+else sf=_sf[d];
+}
+if(sf!='')sf='['+sf+'] ';
+if(inSubfield=='all' || inSubfield=='bookmarked')_content=_content+'<div class="MainlistDiv '+str1+'"><div style="display:table-row;"><div class="MainListTd" '+funname+'="mainlistRowSelected('+_i+','+_p+',this);">'+sf+maindata[_langlist][_p].data[_i].name+'</div></div></div>';
+else _content=_content+'<div class="MainlistDiv '+str1+'"><div style="display:table-row;"><div class="MainListTd" '+funname+'="mainlistRowSelected('+_i+','+_p+',this);">'+maindata[_langlist][_p].data[_i].name+'</div></div></div>';
+return _content;
+}
+
+function refreshMainData(_in){
+_in=_in.toLowerCase();
+if(_in==inSubfield)return;
+var langlist='englist';
+if(inLang=='chi')langlist='chilist';
+inSubfield=_in;
+var content='';
+var ii=0;
+if(_in=='bookmarked'){
+
+// old: englist=[1,2,3]
+// new: englist=[{"key"1,"data"1}]
+for(var i=0; i<bookmarks[inLang].length; i++){
+//[bookmarks[inLang][i]['key']][bookmarks[inLang][i]['data']]
+//alert(JSON.stringify(maindata[langlist][bookmarks[inLang][i].key].data[bookmarks[inLang][i].data]));
+if(maindata[langlist][bookmarks[inLang][i].key].data[bookmarks[inLang][i].data].name.indexOf(searchV)!=-1){
+var subfieldsabc=[];
+for(var k in maindata[langlist][bookmarks[inLang][i]['key']].data[bookmarks[inLang][i]['data']].refers){
+var con=getContentById(maindata[langlist][bookmarks[inLang][i]['key']].data[bookmarks[inLang][i]['data']].refers[k]);
+var ttt=true;for(var jjj in subfieldsabc){if(subfieldsabc[jjj]==con.Subfield_1 || con.Subfield_1=='')ttt=false;}
+if(ttt && con.Subfield_1!='')subfieldsabc.push(con.Subfield_1);
+}
+content=makeMainListContent(content,langlist,bookmarks[inLang][i]['data'],bookmarks[inLang][i]['key'],ii,subfieldsabc);ii++;
+}
+}
+
+
+}else{
+
+for(var p=0; p<maindata[langlist].length; p++){
+content=content+'<div class="MainlistDiv MainListTitleDiv" id="title_'+p+'"><div style="display:table-row;"><div class="MainListTd">'+maindata[langlist][p].key+'</div></div></div>';
+for(var i=0; i<maindata[langlist][p].data.length; i++){
+if(_in!='all'){
+var needAdd=false;
+for(var k in maindata[langlist][p].data[i].refers){
+var con=getContentById(maindata[langlist][p].data[i].refers[k]);
+if(con.Subfield_1.toLowerCase()==_in){needAdd=true;}
+}
+if(needAdd){
+if(maindata[langlist][p].data[i].name.indexOf(searchV)!=-1){
+content=makeMainListContent(content,langlist,i,p,ii);ii++;
+}
+}
+}else{
+if(maindata[langlist][p].data[i].name.indexOf(searchV)!=-1){
+var subfieldsabc=[];
+for(var k in maindata[langlist][p].data[i].refers){
+var con=getContentById(maindata[langlist][p].data[i].refers[k]);
+var ttt=true;for(var jjj in subfieldsabc){if(subfieldsabc[jjj]==con.Subfield_1 || con.Subfield_1=='')ttt=false;}
+if(ttt && con.Subfield_1!='')subfieldsabc.push(con.Subfield_1);
+}
+content=makeMainListContent(content,langlist,i,p,ii,subfieldsabc);ii++;
+}
+}
+}
+}
+
+}
+document.getElementById('div_mainDiv_Td_3_content').innerHTML=content;
+createStokeTable();
+}
+refreshMainData('All');
+
+windowPAB.doMouseEvent('mousedown',function(event){
+windowPAB.touching=true;
+});
+
+windowPAB.doMouseEvent('mousemove',function(event){
+if(windowPAB.touching){
+var element=null;
+if(PhoneAppBuilderHelper.checkBrowserTouchSupported())element=document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY);
+else element=document.elementFromPoint(event.clientX, event.clientY);
+if(element.getAttribute('class')=='StokeTd'){element.click();}
+}
+});
+
+windowPAB.doMouseEvent('mouseup',function(event){
+windowPAB.touching=false;
+});
+
+
+function setIsInBM(_bool){
+if(_bool){setTimeout(function(){
+subfieldSelected(document.getElementById('div_bmobj'),'Bookmarked');
+},10);}
+}
+
+
+function setBookmarks(_bookmarks){
+old_bookmarks=_bookmarks;
+bookmarks={};
+if(bookmarks.eng==null)bookmarks.eng=[];
+if(bookmarks.chi==null)bookmarks.chi=[];
+for(var l in old_bookmarks){
+for(var i=0; i<old_bookmarks[l].length; i++){
+var bmv=old_bookmarks[l][i];
+var bmKey=(bmv.split(','))[0];
+var bmData=(bmv.split(','))[1];
+bookmarks[l].push({"key":bmKey,"data":bmData});
+}
+//alert(JSON.stringify(bookmarks));
+}
+}
+
+function setBookmarksWithRefresh(_bookmarks){
+setBookmarks(_bookmarks);
+if(inSubfield=='bookmarked'){inSubfield='';refreshMainData('bookmarked');}
+}
+
+function removedAllBookmarks(){
+bookmarks={"eng":[],"chi":[]};
+resetLanguage();
+}
+
+
+
+function createStokeTable(){
+if(old_stokeTable!=null)old_stokeTable.parentNode.removeChild(old_stokeTable);
+var stokeTable=document.createElement('table');
+stokeTable.setAttribute('id','stokeTable');
+for(var i=0; i<titlesArr[inLang].length; i++)(function(i){
+var stokeTr=document.createElement('tr');
+var stokeTd=document.createElement('td');
+stokeTd.setAttribute('class','StokeTd');
+if(titlesArr[inLang][i]!=0)stokeTd.innerHTML=titlesArr[inLang][i];
+else stokeTd.innerHTML='#';
+stokeTd.setAttribute('onclick','location.href="#title_'+i+'"');
+stokeTr.appendChild(stokeTd);
+stokeTable.appendChild(stokeTr);
+})(i);
+document.getElementById('div_mainDiv_Td_3').appendChild(stokeTable);
+old_stokeTable=stokeTable;
+}
+
+//	javascript:setBookmarks({"eng":["0,55","0,21","22,6"],								"chi":["0,6","0,64","13,5"]}
+// sjavascript:setBookmarks({"eng":["0,28","2,88","0,3","14,32","0,49","0,243","0,154"],"chi":["4,0","4,11","12,343"]});
+//  javascript:setBookmarks({"eng":["0,28","2,88","0,3","14,32","0,49","0,24","0,154"],"chi":["4,0","4,11","12,343"]});
+</script>
+
+
+
+
+
+
+
+
+
+<img class="ImgClass" src="media/tips/glossary_subfield.png" id="tip_subfield" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/glossary_search.png" id="tip_search" style="position:absolute;z-index:100;visibility:hidden">
+<img class="ImgClass" src="media/tips/glossary_eng_chi.png" id="tip_eng_chi" style="position:absolute;z-index:100;visibility:hidden">
+<div onclick="javascript:show_tips(false);" id="tip_black" style="height:100%;width:100%;background-color:black;position:absolute;z-index:1;top:0px;left:0px;opacity:0.6;z-index:99;visibility:hidden"></div>
+
+
+<script>
+	document.getElementById('tip_subfield').style.top="5%";
+	document.getElementById('tip_subfield').style.left="63%";
+
+	document.getElementById('tip_search').style.top  = ($("#input_searchbar").position().top)+40+'px';
+	document.getElementById('tip_search').style.left = ($(window).width()/2.0)-($("#tip_search").width()/2.0) +'px';
+
+	//bottom (chi/eng) buttons height is 7%
+	document.getElementById('tip_eng_chi').style.bottom='8%';
+	document.getElementById('tip_eng_chi').style.left='40%';
+
+	function show_tips(visible){
+		var v ='';
+		if (visible==true){v='visible';}
+		else {v='hidden';}
+		document.getElementById('tip_subfield').style.visibility = v;
+		document.getElementById('tip_search').style.visibility = v;
+		document.getElementById('tip_eng_chi').style.visibility = v;
+		document.getElementById('tip_black').style.visibility = v;
+	}
+</script>
+
+
+
+
+</body>
+</html>
